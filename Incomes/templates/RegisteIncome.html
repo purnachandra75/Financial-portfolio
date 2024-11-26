@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    Incomepage
+{% endblock %}
+{% block content %}
+    welcome to Incomepage...!!!<br/>
+    <a href="{% url 'Incomecata' %}">click</a> here to register the new income source....!!!<br/>
+    <div >
+    
+        {% for data in somedata %}
+        <div >
+            <strong>name </strong>:<strong>{{data.name }}</strong>
+            <a href="{% url 'editcategory' data.id %}">Edit</a>
+            <a href="{% url 'deletecategory' data.id %}">Delete</a><br/>
+        </div>
+
+        {% endfor  %}
+          
+        
+    </div>
+{% endblock %}

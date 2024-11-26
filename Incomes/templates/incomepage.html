@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    Incomepage
+{% endblock %}
+{% block content %}
+    welcome to Incomepage...!!!<br/>
+    <a href="{% url 'createincome' %}">click</a> here to create the new income source....!!!<br/>
+    <div style="display: flex;flex-wrap: wrap;">
+        {% for data in somedata %}
+            
+            <div style="margin: 2px;width: 150px;height: 100%;border: 1px,solid,black;">
+                <p><strong>Amount</strong>:<strong>{{data.amount}}</strong></p>
+                <p><strong>Source</strong>:<strong>{{data.source}}</strong></p>
+                <p><strong>Date</strong>:<strong>{{data.date}}</strong></p>
+                <p><strong>Frequency</strong>:<strong>{{data.frequency}}</strong></p>
+                <a href="{% url 'updateIncome' data.id %}">Edit</a >&nbsp;<a href="{% url 'deleteincome' data.id %}">Delete</a>
+            </div>
+        {% endfor  %}
+    </div>
+{% endblock %}

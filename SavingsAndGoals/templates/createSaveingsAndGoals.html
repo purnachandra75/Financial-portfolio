@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+Savings and Goals
+{% endblock %}
+{% block content %}
+<div style="border: 1px solid black;width: 400px;height: 300px; align-content: center; ">
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <button>create</button>
+    </form>
+</div>
+{% endblock %}

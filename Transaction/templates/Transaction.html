@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+    Transaction
+{% endblock %}
+{% block content %}
+    welcome to Transaction page...!!!<br/>
+    <a href="{% url 'CreateTransaction' 'Income' %}">click</a> here to create the new Income transaction....!!!<br/>
+    <a href="{% url 'CreateTransaction' 'Expanse' %}">click</a> here to create the new Expanse transaction....!!!<br/>
+    <div style="display: flex;flex-wrap: wrap;">
+        {% for data in somedata %}
+            
+            <div style="margin: 2px;width: 250px;border: 1px,solid,black;">
+               
+                <p><strong>transaction_type</strong>:<strong>{{data.transaction_type}}</strong></p>
+                <p><strong>amount</strong>:{{data.amount}}</p>
+                <p><strong>category</strong>:<strong>{{data.category}}</strong></p>
+                <p><strong>date</strong>:<strong>{{data.date}}</strong></p>
+                <p><strong>description</strong>:<strong>{{data.description}}</strong></p>
+                
+                <a href="{% url 'UpdateTransaction' data.id data.transaction_type|default:'Unknown' %}">Edit</a >&nbsp;<a href="{% url 'deleteTransaction' data.id %}">Delete</a>
+            </div>
+        {% endfor  %}
+    </div>
+{% endblock %}

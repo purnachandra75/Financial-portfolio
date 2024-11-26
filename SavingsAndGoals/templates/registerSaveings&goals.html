@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+register Savings&goals
+{% endblock %}
+{% block content %}
+    welcome to Savings&goals...!!!<br/>
+    <a href="{% url 'createSandGregi' %}">click</a> here to register the new Savings&goals....!!!<br/>
+    <div >
+    
+        {% for data in somedata %}
+        <div >
+            <strong>name </strong>:<strong>{{data.name }}</strong><br/>
+         
+            <a href="{% url 'updateSandGregi' data.id %}">Edit</a>
+            <a href="{% url 'deleteSandGregi' data.id %}">Delete</a><br/>
+        </div>
+
+        {% endfor  %}
+          
+        
+    </div>
+{% endblock %}
