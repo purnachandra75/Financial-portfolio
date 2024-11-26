@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Document{% endblock %}</title>
+    <style>
+        .dropdown {
+            cursor: pointer;
+            position: relative;
+        }
+        .dropdown-menu,
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 150px;
+            z-index: 1;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-menu {
+            top: 100%;
+            right: 0;
+        }
+        .submenu {
+            top: 0;
+            right: 150px;
+        }
+        .dropdown-menu a,
+        .submenu a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover,
+        .submenu a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <header style="border: black solid 1px; display: flex; justify-content: space-between;">
+        <div style="margin: 30px;">
+            logo
+        </div>
+        <div>
+            <ul style="display: flex; justify-content: space-between; list-style-type: none;">
+                <li style="margin: 10px;">home</li>
+                <li style="margin: 10px;">about</li>
+                <li style="margin: 10px;">contact</li>
+                <li style="margin: 10px;" class="dropdown">
+                    {% if user %}
+                        {{ user }}
+                    {% else %}
+                        <a href="{% url 'loginpage' %}">Login</a>
+                    {% endif %}
+                    <div class="dropdown-menu">
+                        <a href="#" class="income-link">Income</a>
+                        <div class="submenu income-submenu">
+                            <a href="{% url 'registerIncome' %}">Register Income</a>
+                            <a href="{% url 'Incomepage' %}">Income Source</a>
+                        </div>
+                        <a href="#" class="expense-link">Expense</a>
+                        <div class="submenu expense-submenu">
+                            <a href="{% url 'regsExpanses' %}">Register Expenses</a>
+                            <a href="{% url 'Expensespage' %}">Expenses Details</a>
+                        </div>
+                        <a href="#" class="budget-link">Budget</a>
+                        <div class="submenu budget-submenu">
+                            <a href="{% url 'registerBudget' %}">Register Budget</a>
+                            <a href="{% url 'Budgetpage' %}">Budget Details</a>
+                        </div>
+                        <a href="#" class="saving-link">Saving & Goals</a>
+                        <div class="submenu savingGoals-submenu">
+                            <a href="{% url 'regiSavingsAndGoals' %}">Register Goals</a>
+                            <a href="{% url 'SavingeandGoal' %}">Goals Details</a>
+                        </div>
+                        <a href="{% url 'Transaction' %}">Transaction</a>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            const submenus = {
+                income: document.querySelector('.income-submenu'),
+                expense: document.querySelector('.expense-submenu'),
+                budget: document.querySelector('.budget-submenu'),
+                savingGoals: document.querySelector('.savingGoals-submenu')
+            };
+
+            function toggleMenu(menu) {
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+
+            function closeAllSubmenus() {
+                Object.values(submenus).forEach(submenu => submenu.style.display = 'none');
+            }
+
+            dropdown.addEventListener('click', function(event) {
+                toggleMenu(dropdownMenu);
+                event.stopPropagation();
+            });
+
+            document.querySelector('.income-link').addEventListener('click', function(event) {
+                closeAllSubmenus();
+                toggleMenu(submenus.income);
+                event.stopPropagation();
+            });
+
+            document.querySelector('.expense-link').addEventListener('click', function(event) {
+                closeAllSubmenus();
+                toggleMenu(submenus.expense);
+                event.stopPropagation();
+            });
+
+            document.querySelector('.budget-link').addEventListener('click', function(event) {
+                closeAllSubmenus();
+                toggleMenu(submenus.budget);
+                event.stopPropagation();
+            });
+
+            document.querySelector('.saving-link').addEventListener('click', function(event) {
+                closeAllSubmenus();
+                toggleMenu(submenus.savingGoals);
+                event.stopPropagation();
+            });
+
+            document.addEventListener('click', function(event) {
+                dropdownMenu.style.display = 'none';
+                closeAllSubmenus();
+            });
+        });
+    </script>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
