@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    Budget
+{% endblock %}
+{% block content %}
+    welcome to Budget page...!!!<br/>
+    <a href="{% url 'createbudget' %}">click</a> here to create the new Budget source....!!!<br/>
+    <div style="display: flex;flex-wrap: wrap;">
+        {% for data in somedata %}
+            
+            <div style="margin: 2px;width: 250px;border: 1px,solid,black;">
+               
+                <p><strong>Category</strong>:<strong>{{data.category}}</strong></p>
+                <p><strong>limit</strong>:{{data.limit}}</p>
+                <p><strong>start_date</strong>:<strong>{{data.start_date}}</strong></p>
+                <p><strong>end_date</strong>:<strong>{{data.end_date}}</strong></p>
+                <a href="{% url 'updateBudget' data.id %}">Edit</a >&nbsp;<a href="{% url 'deletebudget' data.id %}">Delete</a>
+            </div>
+        {% endfor  %}
+    </div>
+{% endblock %}

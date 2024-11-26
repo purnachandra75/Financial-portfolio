@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    Regi budget
+{% endblock %}
+{% block content %}
+    welcome to Budget...!!!<br/>
+    <a href="{% url 'createBudget' %}">click</a> here to register the new Budget....!!!<br/>
+    <div >
+    
+        {% for data in somedata %}
+        <div >
+            <strong>name </strong>:<strong>{{data.name}}</strong><br/>
+            
+            <a href="{% url 'updatebudgetRege' data.id %}">Edit</a>
+            <a href="{% url 'deletebudgetrege' data.id %}">Delete</a><br/>
+        </div>
+
+        {% endfor  %}
+          
+        
+    </div>
+{% endblock %}

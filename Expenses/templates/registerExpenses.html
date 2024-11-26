@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+Expense
+{% endblock %}
+{% block content %}
+    welcome to Expanses...!!!<br/>
+    <a href="{% url 'expanseCate' %}">click</a> here to register the new Expanses....!!!<br/>
+    <div >
+    
+        {% for data in somedata %}
+        <div >
+            <strong>name </strong>:<strong>{{data.name }}</strong><br/>
+            <strong>Type </strong>:<strong>{{data.type }}</strong><br/>
+            <a href="{% url 'updateexpansescate' data.id %}">Edit</a>
+            <a href="{% url 'deleteexpansescate' data.id %}">Delete</a><br/>
+        </div>
+
+        {% endfor  %}
+          
+        
+    </div>
+{% endblock %}
