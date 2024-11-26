@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if msg %}
+        {{msg}}
+        <br/>
+        <a href="{% url 'registration' %}">Register</a><br/>
+    {% endif %}
+    <h1>forgotpass</h1>
+    <h3>enter your email..!!!</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input placeholder="enter your email" type="email" name="email"/>
+        <button>submit</button>
+    </form>
+    
+</body>
+</html>
